@@ -86,15 +86,16 @@ async function executeQueries(
 
 executeQueries(projectId, sessionId, queries, languageCode)
 
+
+app.use(express.json())
+
+
 app.post('/query', (req, res) => {
-    console.log(req.params)
+    console.log(req.body.userTextResponse)
     console.log('query')
     
     res.send('query')
 })
-
-app.use(express.json())
-
 
 app.get('/', (req, res) => {
     res.send("Server Is Working......")
