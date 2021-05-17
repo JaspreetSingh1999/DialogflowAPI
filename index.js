@@ -6,9 +6,11 @@ const dialogflow = require('@google-cloud/dialogflow');
 const projectId = 'qutrain';
 const sessionId = '123456';
 const queries = [
-    'Hi',
-    'What is your name?', // Tell the bot when the meeting is taking place
-    'B',  // Rooms are defined on the Dialogflow agent, default options are A, B, or C 
+    'Hi, I would like to know my credit card bill.',
+    'Yes, it’s 9999912345', // Sure. Can you please provide me your registered phone number?
+    'Yeah it’s 432210',  // Thanks, You will receive an OTP number which is sent to your registered phone number. Can you please confirm that as well?
+    'Sure, it’s 01752', // Great! Lastly, can you please confirm your zip code?
+    'No, I am good.' // Is there anything else can I help you with?
 ]
 const languageCode = 'en';
 
