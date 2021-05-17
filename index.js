@@ -78,23 +78,33 @@ async function executeQueries(
             console.log(`Fulfillment Text: ${intentResponse.queryResult.fulfillmentText}`)
             // Use the context from this response for next queries
             context = intentResponse.queryResult.outputContexts;
+
+            return `${intentResponse.queryResult.fulfillmentText}`;
         } catch (error) {
             console.log(error);
+            return error;
         }
     }
 }
 
-executeQueries(projectId, sessionId, queries, languageCode)
+// executeQueries(projectId, sessionId, queries, languageCode)
 
 
 app.use(express.json())
 
+async function getData(userTextResponse) {
+    return await executeQueries(projectId, sessionId, [userTextResponse], languageCode);
+}
 
 app.post('/query', (req, res) => {
     console.log(req.body.userTextResponse)
     console.log('query')
     
-    res.send('query')
+    getData(req.body.userTextResponse)
+        .then((response) => {
+            console.log(response)
+            res.send(response)
+        })
 })
 
 app.get('/', (req, res) => {
